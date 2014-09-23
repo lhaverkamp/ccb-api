@@ -1,19 +1,6 @@
 <?php
 
 /**
- * The file that defines the core plugin class
- *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the dashboard.
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Ccb_Api
- * @subpackage Ccb_Api/includes
- */
-
-/**
  * The core plugin class.
  *
  * This is used to define internationalization, dashboard-specific hooks, and
@@ -28,10 +15,37 @@
  * @author     Laura Haverkamp <laura@haverkamp.us>
  */
 class Ccb_Api {
+    /**
+     * A constant that is used on both the admin and the public side to store
+     * and retrieve the options via get_option and set_option
+     *
+     * @since 1.0.0
+     * @const OPTIONS
+     */
     const OPTIONS = 'ccb_plugin_options';
     
+    /**
+     * A constant used to pull a specific option out of the option array.
+     *
+     * @since 1.0.0
+     * @const URL
+     */
     const URL = 'ccb_url';
+    
+    /**
+     * A constant used to pull a specific option out of the option array.
+     *
+     * @since 1.0.0
+     * @const USERNAME
+     */
     const USERNAME = 'ccb_username';
+    
+    /**
+     * A constant used to pull a specific option out of the option array.
+     *
+     * @since 1.0.0
+     * @const PASSWORD
+     */
     const PASSWORD = 'ccb_password';
 
 	/**
@@ -72,15 +86,12 @@ class Ccb_Api {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-
 		$this->plugin_name = 'ccb-api';
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
-		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -89,7 +100,6 @@ class Ccb_Api {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Ccb_Api_Loader. Orchestrates the hooks of the plugin.
-	 * - Ccb_Api_i18n. Defines internationalization functionality.
 	 * - Ccb_Api_Admin. Defines all hooks for the dashboard.
 	 * - Ccb_Api_Public. Defines all hooks for the public side of the site.
 	 *
@@ -100,19 +110,14 @@ class Ccb_Api {
 	 * @access   private
 	 */
 	private function load_dependencies() {
-
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ccb-api-loader.php';
 
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ccb-api-i18n.php';
-
+        // TODO i18n
+        
 		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
@@ -125,25 +130,6 @@ class Ccb_Api {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-ccb-api-public.php';
 
 		$this->loader = new Ccb_Api_Loader();
-
-	}
-
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the Ccb_Api_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function set_locale() {
-
-		$plugin_i18n = new Ccb_Api_i18n();
-		$plugin_i18n->set_domain( $this->get_plugin_name() );
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -154,15 +140,10 @@ class Ccb_Api {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
 		$plugin_admin = new Ccb_Api_Admin( $this->get_plugin_name(), $this->get_version() );
         
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugins_page');
         $this->loader->add_action( 'admin_init', $plugin_admin, 'ccb_initialize_plugin_options');
-
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -173,13 +154,10 @@ class Ccb_Api {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
 		$plugin_public = new Ccb_Api_Public( $this->get_plugin_name(), $this->get_version() );
 
         $this->loader->add_shortcode( 'ccb_current_events', $plugin_public, 'current_events' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 	}
 
 	/**

@@ -30,11 +30,43 @@ class Ccb_Api_Admin {
 	 */
 	private $version;
     
+    /**
+     * Constant for defining the name of the section.
+     *
+     * @since 1.0.0
+     */
     const PAGE_SECTION = 'ccb_settings_section';
     
+    /**
+     * Constant used for array keys in the $args array.
+     *
+     * @since 1.0.0
+     * @const LABEL_FOR
+     */
     const LABEL_FOR = 'label_for';
+
+    /**
+     * Constant used for array keys in the $args array.
+     *
+     * @since 1.0.0
+     * @const TYPE
+     */
     const TYPE = 'type';
+
+    /**
+     * Constant used for array keys in the $args array.
+     *
+     * @since 1.0.0
+     * @const SIZE
+     */
     const SIZE = 'size';
+
+    /**
+     * Constant used for array keys in the $args array.
+     *
+     * @since 1.0.0
+     * @const DESCRIPTION
+     */
     const DESCRIPTION = 'description';
 
 	/**
@@ -52,6 +84,8 @@ class Ccb_Api_Admin {
 
     /**
      * Register the options page for the dashboard.
+     *
+     * @since 1.0.0
      */
     public function add_plugins_page() {
         add_plugins_page(
@@ -63,12 +97,19 @@ class Ccb_Api_Admin {
         );
     }
     
+    /**
+     * Callback for add_plugins_page
+     *
+     * @since 1.0.0
+     */
     public function ccb_plugin_display() {
         require_once plugin_dir_path( __FILE__ ) . 'partials/ccb-api-admin-display.php';
     }
     
     /**
      * Initialize the options page for the dashboard.
+     *
+     * @since 1.0.0
      */
     public function ccb_initialize_plugin_options() {
         add_settings_section(
@@ -125,11 +166,22 @@ class Ccb_Api_Admin {
             array($this, 'sanitize')
         );
     }
-    
+
+    /**
+     * Callback for add_settings_section
+     *
+     * @since 1.0.0
+     */
     public function ccb_general_options_callback() {
         // TODO -- nothing exciting to display here
     }
     
+    /**
+     * Callback for add_settings_field
+     *
+     * @since 1.0.0
+     * @param array $args
+     */
     public function add_input_field( $args ) {
         $options = get_option( Ccb_Api::OPTIONS );
         
@@ -151,6 +203,12 @@ class Ccb_Api_Admin {
         printf('<p class="description">%s</p>', $description);
     }
     
+    /**
+     * Callback that is used to sanitize the input before it's saved to the database.
+     *
+     * @since 1.0.0
+     * @param array $input
+     */
     public function sanitize( $input ) {
         $output = array();
         
@@ -166,50 +224,4 @@ class Ccb_Api_Admin {
         
         return apply_filters( 'sanitize', $output );
     }
-    
-	/**
-	 * Register the stylesheets for the Dashboard.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Ccb_Api_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Ccb_Api_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->name, plugin_dir_url( __FILE__ ) . 'css/ccb-api-admin.css', array(), $this->version, 'all' );
-
-	}
-
-	/**
-	 * Register the JavaScript for the dashboard.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Ccb_Api_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Ccb_Api_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->name, plugin_dir_url( __FILE__ ) . 'js/ccb-api-admin.js', array( 'jquery' ), $this->version, false );
-
-	}
 }

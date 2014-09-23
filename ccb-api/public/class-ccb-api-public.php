@@ -11,7 +11,6 @@
  * @author     Laura Haverkamp <laura@haverkamp.us>
  */
 class Ccb_Api_Public {
-
 	/**
 	 * The ID of this plugin.
 	 *
@@ -41,7 +40,14 @@ class Ccb_Api_Public {
 		$this->name = $name;
 		$this->version = $version;
 	}
-    
+
+    /**
+     * Interfaces with the public_calendar_listing API and pulls back the 
+     * listings for the # of days the user has requested.
+     *
+     * @since 1.0.0
+     * @param array $atts
+     */
     public function current_events( $atts ) {        
         // pull options
         $options = get_option(Ccb_Api::OPTIONS);
@@ -88,6 +94,9 @@ class Ccb_Api_Public {
     
     /**
      * This method parses the XML returned by the public_calendar_listing API call.
+     *
+     * @since 1.0.0
+     * @param string $xml
      */
     private function parse_public_calendar_listing( $xml ) {
         $header = null;
@@ -149,28 +158,4 @@ class Ccb_Api_Public {
 		wp_enqueue_style( $this->name, plugin_dir_url( __FILE__ ) . 'css/ccb-api-public.css', array(), $this->version, 'all' );
 
 	}
-
-	/**
-	 * Register the stylesheets for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Ccb_Api_Public_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Ccb_Api_Public_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->name, plugin_dir_url( __FILE__ ) . 'js/ccb-api-public.js', array( 'jquery' ), $this->version, false );
-
-	}
-
 }

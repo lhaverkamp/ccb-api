@@ -1,11 +1,7 @@
-/**
- * All of the CSS for your public-facing functionality should be
- * included in this file.
- */
-.ccb-event {
+.ccb-calendar > .ccb-event {
     padding-left: 30px;
 }
 
-.ccb-event > .ccb-event-location {
+.ccb-calendar > .ccb-event > .ccb-event-location {
     float: right;
 }

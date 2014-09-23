@@ -16,22 +16,6 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * The code that runs during plugin activation.
- */
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-ccb-api-activator.php';
-
-/**
- * The code that runs during plugin deactivation.
- */
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-ccb-api-deactivator.php';
-
-/** This action is documented in includes/class-ccb-api-activator.php */
-register_activation_hook( __FILE__, array( 'Ccb_Api_Plugin_Activator', 'activate' ) );
-
-/** This action is documented in includes/class-ccb-api-deactivator.php */
-register_deactivation_hook( __FILE__, array( 'Ccb_Api_Plugin_Deactivator', 'deactivate' ) );
-
-/**
  * The core plugin class that is used to define internationalization,
  * dashboard-specific hooks, and public-facing site hooks.
  */
