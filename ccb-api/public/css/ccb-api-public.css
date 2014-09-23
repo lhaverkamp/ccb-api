@@ -1,0 +1,7 @@
+.ccb-calendar > .ccb-event {
+    padding-left: 30px;
+}
+
+.ccb-calendar > .ccb-event > .ccb-event-location {
+    float: right;
+}
