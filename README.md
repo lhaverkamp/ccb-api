@@ -21,12 +21,13 @@ The WordPress CCB API Plugin includes the following files:
 ### via Add Plugins
 
 1.  Download the plugin from GitHub using either *Download ZIP* or one of the release tags.
-2.  In the WordPress dashboard, navigate to the *Plugins* -> *Add Plugins* page.
-3.  Install the plugin downloaded in step 1.
-4.  In the WordPress dashboard, navigate to the *Plugins* page.  Locate the menu item that reads "CCB API."
-5.  Click on *Activate.*
-6.  In the WordPress dashboard, navigate to the *Plugins* -> *CCB Plugin* page.  Configure the plugin.  The CCB API users are configured in the CCB application unders *Settings* -> *API*.
-7.  Click on *Save Changes*
+2.  In the WordPress dashboard, navigate to the *Plugins* -> *Add New* page.
+3.  Click *Upload Plugin.*
+4.  Click *Choose File* and select the download from *Step 1*.
+5.  Click *Install Now.*
+6.  Click on *Activate Plugin.*
+7.  In the WordPress dashboard, navigate to the *Plugins* -> *CCB Plugin* page.  Configure the plugin.  The CCB API users are configured in the CCB application unders *Settings* -> *API*.
+8.  Click on *Save Changes*
 
 ## Usage
 
