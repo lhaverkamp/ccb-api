@@ -4,8 +4,9 @@
  * Plugin Name: CCB API
  * Plugin URI: https://github.com/lhaverkamp/ccb-api
  * Description: A WordPress plugin that consumes various CCB API calls.
- * Version: 1.0.0
- * Author: Laura Haverkamp
+ * Version: 1.1.1
+ * Author: Laura 
+ * Author URI: https://github.com/lhaverkamp
  * License: GPL3
  * License URI: http://www.gnu.org/licenses/gpl.html
  */
