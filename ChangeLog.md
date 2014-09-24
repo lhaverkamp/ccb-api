@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## 1.1.1
+
+- removed index.php files
+- fixed version number to display the correct one in the dashboard
+
 ## 1.1.0
 
 - restructed directories so that downloading of a tag directly from github can then be used as the installation zip for uploading the plugin into WordPress
